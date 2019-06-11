@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Czas generowania: 02 Cze 2019, 19:56
+-- Czas generowania: 11 Cze 2019, 20:38
 -- Wersja serwera: 5.7.24
 -- Wersja PHP: 7.2.14
 
@@ -27,9 +27,9 @@ DELIMITER $$
 -- Procedury
 --
 DROP PROCEDURE IF EXISTS `licz`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `licz` (OUT `licz` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `licz` ()  NO SQL
 BEGIN
-Select count(*) into licz from klub
+Select count(*) from klub
 where budzet<0;
 end$$
 
@@ -59,7 +59,8 @@ CREATE TABLE IF NOT EXISTS `klub` (
 INSERT INTO `klub` (`ID_klubu`, `Nazwa`, `Data_zalozenia`, `Budzet`, `Miasto`, `Dyscyplina`) VALUES
 (5, 'dsadsa', '2000-05-04', '321321321', 'dasdsa', 'dsadsa'),
 (6, 'dsadsa', '2000-05-05', '321312zl', 'dsadsa', 'dsdadas'),
-(56, 'asdddd', '2000-05-01', '-100', 'wwa', 'pilka');
+(56, 'asdddd', '2000-05-01', '-100', 'wwa', 'pilka'),
+(8, '123', '2000-04-23', '-100', 'asd', 'asd');
 
 -- --------------------------------------------------------
 
@@ -82,7 +83,8 @@ CREATE TABLE IF NOT EXISTS `kontrakt` (
 
 INSERT INTO `kontrakt` (`ID_kontraktu`, `Data`, `Waznosc`, `Wynagrodzenie`) VALUES
 (6, '2000-01-01', '2000-01-02', '3213'),
-(4, '2000-01-01', '2000-01-02', '3125');
+(4, '2000-01-01', '2000-01-02', '3125'),
+(123, '2000-02-02', '2000-03-03', '123123');
 
 -- --------------------------------------------------------
 

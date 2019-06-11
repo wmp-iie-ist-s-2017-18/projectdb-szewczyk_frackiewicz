@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -477,7 +478,7 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton11.setText("jButton11");
+        jButton11.setText("Sumuj kluby z ujemnym budżetem");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
@@ -798,11 +799,14 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
        try{
+        String myRs = null;
         Connection con;
-        CallableStatement cs;
         con = DriverManager.getConnection("jdbc:mysql://localhost/projektbazy","root","");
-        cs=con.prepareCall("{call licz()");
-        ResultSet myRs=(ResultSet) cs.getResultSet();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("call licz()");
+        while (rs.next())
+                myRs = rs.getString(1);
+        
         
         JOptionPane.showMessageDialog(null,"Ilosc klubow posiadajacych budzet ujemny:"+ myRs);
        }
